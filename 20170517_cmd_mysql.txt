@@ -1,0 +1,36 @@
+cd C:\xampp\mysql\bin
+
+mysql -uroot -p(패스워드 없음)
+use mysql
+ /  mysql -utestdb -p(패스워드 4321)
+
+show databases;
+show tables;
+
+select colume명 from DB명;
+desc db;
+
+쿼리문에는 ""가 들어가선 안된다. 대신 ''만 써야함.
+
+테이블의 변경된 내용 적용하려면
+flush privileges(일종의 commit)(>>>>>>중요<<<<<<)
+
+ctrl C는 나가기
+
+insert into user(host,user,password)
+values('localhost','gomyammi',password(1004));
+
+update user set password = password('4321')
+where user = 'gomyammi';
+
+create table friend (
+	num int not null,
+	name char(10),
+	address char(80),
+	tel char(20),
+	email char(20),
+	primary key(num)
+	);
+insert into friend valuse('num', 'name', 'address', 'tel', 'email');
+select * from friend
+where num=0 or 1이나 where email like '%검색할 뭔가%';를 쓸 수도 있다.

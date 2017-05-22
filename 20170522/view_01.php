@@ -32,7 +32,7 @@ if(isset($_POST["permission"]) && ($_POST["permission"] == "yyyyyyyyyyyyes" || $
 	print "Y or N ? <br>";
 	print $_POST["permission"];
 } else {
-	print "Y or N ? try again"."<a href='form.php>get out</a>'";
+	print "Y or N ? try again"."<br><a href='form.php'>get out</a>";
 }
 
 /* $hobby = implode(' ', $_POST["hobby"]);

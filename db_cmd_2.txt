@@ -1,0 +1,9 @@
+xampp control panel services에서 MySQL57을 찾아서 중단시킨다.
+->포트겹치면 안되니까.
+
+mysql 접속은 mysql -u
+-> -u는 유저라는 뜻.
+
+mysql -uroot -p
+use mysql
+select user from user;

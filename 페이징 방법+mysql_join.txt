@@ -1,0 +1,36 @@
+페이징 구현 수식
+
+원리
+1 => limit 0, 10
+2 => limit 10, 10
+3 => limit 20, 10
+4 => limit 30, 10
+
+수식
+$number(입력되는 숫자) => limit($number-1) * 10, 10
+
+전체페이지
+$totalcolunt = 57(select count(*) from member)
+
+페이지수
+if($totalcolunt % 10 == 0) {
+	$totalpage = $totalcolunt / 10;
+} else {
+	$totalpage = $totalcolunt / 10 + 1;
+}
+
+Table A 와 B
+inner join
+-> select * from A,B where A.id = B.id; //-2
+-> select * from A inner join B on A.id = B.id //-1
+
+left join
+-> select * from A left join B on A.id = B.id //-1
+-> select * from A,B where A.id = B.id(+) //-2
+
+right join
+-> select * from A right join B on A.id = B.id //-1
+-> select * from A,B where A.id(+) = B.id //-2
+
+-1과 같은 sql표현식을 ansi쿼리  --> mysql / oracle 방식
+sql쿼리 방식은 다음과 같다 -2  --> oracle 방식

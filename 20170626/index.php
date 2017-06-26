@@ -5,7 +5,7 @@ require_once _ROOT_DIR.'init.php';
 // DB 접속
 // $conn = new BaseModel();
 $list = new ListModel();
-$listarray[] = $list->get_list(1);
+$listarray[] = $list->get_list($_GET["id"]);
 ?>
 
 <html>
@@ -20,6 +20,11 @@ $listarray[] = $list->get_list(1);
 		th, td {padding: 5 30px;}
 	</style>
 	<body>
+	<?php for($i = 1; $i < (count($listarray)/10)+1; $i++) {?>
+	<a href="<?=$listarray[] = $list->get_list($i)?>"><?=$listarray[] = $list->get_list($i)?>페이지</a>
+	<?php 
+		}
+	?>
 		<table>
 			<thead>
 				<tr>

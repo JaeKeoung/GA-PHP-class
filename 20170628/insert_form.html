@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>게시판 업로드 연습 페이지</title>
+		<meta charset="utf8">
+	</head>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+	<style>
+		body {font-family: 'Josefin Sans', sans-serif; font-size: 11pt;}
+	</style>
+	<body>
+		<form action="insert.php" method="post" name="board_upload_form">
+			<label for="title">제목</label><input type="text" name="title"><br>
+			<label for="name">작성자</label><input type="text" name="name"><br>
+			<label for="email">이메일</label><input type="text" name="email"><br>
+			<label for="password">비밀번호</label><input type="password" name="password"><br>
+			<label for="content">내용</label><textarea rows="10" name="content"></textarea><br>
+			<input type="submit" value="등록">
+		</form>
+	</body>
+</html>

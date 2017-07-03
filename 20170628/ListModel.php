@@ -16,29 +16,57 @@ class ListModel extends BaseModel {
 		return $data;
 	}
 	// board에 데이터를 삭제하는 함수
-	function deleteBoard($param) {
+	function deleteBoard($list) {
 		;
 	}
-	// board에 데이터를 업데이트하는 함수
-	function updateBoard($param) {
-		;
-	}
-	// board에 데이터를 추가하는 함수
-	function insertBoard($list) {
+	//다중 insert문
+	function multiInsert($list) {
 		try {
-			$sql = "INSERT INTO board (title, name, email, pass, content, wdate, ip, view) " ;
-			$sql .= "VALUES (:title, :name, :email, :pass, :content, now(), :ip, :view)";
+			$this->pdo->beginTransaction();
+			foreach ($list as $datas) {
+				$sql = "INSERT INTO board";
+				$sql .= " (title, name, email, pass, content, ip, view)";
+				$sql .= " VALUES (:title, :name, :email, :pass, :content, :ip, :view)";
+				$stmh = $this->pdo->prepare($sql);
+				foreach ($datas as $column => $value) {
+					$stmh->bindParam(":{$column}", $value);
+				}
+				$stmh->execute();
+			}
+			$this->pdo->commit();
+		} catch (PDOException $e) {
+			print "오류:".$e->getMessage();
+		}
+	}
+	// board에 데이터를 추가하거나 업데이트하는 함수
+	function insertUpdateBoard($list) {
+		if ($list["id"] != null) {
+			$sql = "UPDATE board SET title=:title, name=:name, email=:email, pass=:pass, content=:content";
+			$sql .= " WHERE id=:id";
 			$stmh = $this->pdo->prepare($sql);
+			$stmh->bindValue(':id',$list["id"],PDO::PARAM_INT);
 			$stmh->bindValue(':title',$list["title"],PDO::PARAM_STR);
 			$stmh->bindValue(':name',$list["name"],PDO::PARAM_STR);
 			$stmh->bindValue(':email',$list["email"],PDO::PARAM_STR);
 			$stmh->bindValue(':pass',$list["password"],PDO::PARAM_STR);
 			$stmh->bindValue(':content',$list["content"],PDO::PARAM_STR);
-			$stmh->bindValue(':ip',"127.0.0.1",PDO::PARAM_STR);
-			$stmh->bindValue(':view',0,PDO::PARAM_STR);
 			$stmh->execute();
-		} catch (Exception $e) {
-			print "오류:".$e->getMessage();
+		} else {
+// 			try {
+				$sql = "INSERT INTO board (title, name, email, pass, content, wdate, ip, view) ";
+				$sql .= "VALUES (:title, :name, :email, :pass, :content, now(), :ip, :view)";
+				$stmh = $this->pdo->prepare($sql);
+				$stmh->bindValue(':title',$list["title"],PDO::PARAM_STR);
+				$stmh->bindValue(':name',$list["name"],PDO::PARAM_STR);
+				$stmh->bindValue(':email',$list["email"],PDO::PARAM_STR);
+				$stmh->bindValue(':pass',$list["password"],PDO::PARAM_STR);
+				$stmh->bindValue(':content',$list["content"],PDO::PARAM_STR);
+				$stmh->bindValue(':ip',"127.0.0.1",PDO::PARAM_STR);
+				$stmh->bindValue(':view',0,PDO::PARAM_STR);
+				$stmh->execute();
+// 			} catch (Exception $e) {
+// 				print "오류:".$e->getMessage();
+// 			}
 		}
 // 		print "name = ".$list["name"];
 	}

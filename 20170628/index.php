@@ -55,5 +55,6 @@ $totalpage = ceil($totalcount / _show_page);
 				print "<a href=index.php?no=$i>$i | </a>";
 			}
 		?>
+		<a href="./insert_form.html">글쓰기</a>
 	</body>
 </html>

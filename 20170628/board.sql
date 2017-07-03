@@ -1,4 +1,7 @@
-drop table if exists board;
+DROP DATABASE IF EXISTS sampledb;
+CREATE DATABASE sampledb CHARACTER SET utf8 COLLATE utf8_general_ci;
+use sampledb;
+DROP TABLE IF EXISTS board;
 CREATE TABLE board(
 id int(11) unsigned not null auto_increment,
 name varchar(20) not null,
@@ -12,7 +15,7 @@ view int(11) not null default 0,
 primary key(id)
 )DEFAULT CHARSET=utf8;
 
-insert into board(name, email, pass, title, content, wdate, ip, view) values ('test01', 'test01@exapmle.com', 'pass01', 'title01', 'testcontent01', now(), '127.0.0.1', 0);
+insert into board(name, email, pass, title, content, wdate, ip, view) values ('한글이름', 'test01@exapmle.com', 'pass01', 'title01', 'testcontent01', now(), '127.0.0.1', 0);
 insert into board(name, email, pass, title, content, wdate, ip, view) values ('test02', 'test02@exapmle.com', 'pass02', 'title02', 'testcontent02', now(), '127.0.0.1', 0);
 insert into board(name, email, pass, title, content, wdate, ip, view) values ('test03', 'test03@exapmle.com', 'pass03', 'title03', 'testcontent03', now(), '127.0.0.1', 0);
 insert into board(name, email, pass, title, content, wdate, ip, view) values ('test04', 'test04@exapmle.com', 'pass04', 'title04', 'testcontent04', now(), '127.0.0.1', 0);

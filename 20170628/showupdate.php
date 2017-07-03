@@ -4,7 +4,8 @@ require_once _ROOT_DIR.'init.php';
 
 $list = new ListModel();
 $data = $list->getDataFromId($_GET["id"]);
-print "name = ".$data["name"];
+// print "name = ".$data["name"]; // 확인용 코드
+$id = $_GET["id"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,7 @@ print "name = ".$data["name"];
 			<label for="email">이메일</label><input type="text" name="email" value="<?=$data['email']?>" /><br>
 			<label for="password">비밀번호</label><input type="password" name="password" value="<?=$data['pass']?>" /><br>
 			<label for="content">내용</label><textarea rows="10" name="content" ><?=$data['content']?></textarea><br>
+			<input type="hidden" name="id" value="<?=$id?>" />
 			<input type="submit" value="등록">
 		</form>
 	</body>
